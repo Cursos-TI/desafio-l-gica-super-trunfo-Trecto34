@@ -6,8 +6,9 @@
 // Siga os comentários para implementar cada parte do desafio.
 //Teste larissa
 
-char estado, estado2, codigo[20], codigo2[20], nome_cidade[20],
+char codigo[20], codigo2[20], nome_cidade[20],
 nome_cidade2[20];
+char estado[3], estado2[3];
 int pontos_turisticos, pontos_turisticos2;
 signed long int populacao, populacao2;
 float area, area2, pib, pib2, densidade, densidade2, pibpc, pibpc2;
@@ -54,7 +55,7 @@ int main() {
   // repete
   printf("-=-=-=-=CARTA 2=-=-=-=-\n");
   printf("Digite o estado: ");
-  scanf("%s", &estado2);
+  scanf("%2s", &estado2);
 
   printf("Digite o Cdigo da carta: ");
   scanf("%s", codigo2);
@@ -88,9 +89,13 @@ int main() {
     + pibpc2;
 
   printf("Comparação de Cartas:\n\n"); //Removi o código antigo para se adequar ao pedido.
-  printf("População: Carta %d venceu (%d)\n", 
-         (populacao > populacao2)  ? 1 : 2,
-         (populacao > populacao2));
+  printf("%s (\"%s\") %d:\n", nome_cidade, estado, populacao);
+  printf("%s (\"%s\") %d:\n", nome_cidade2, estado2,populacao2);
+  printf("Resultado: Carta %s venceu (%s)\n",
+         (populacao > populacao2) ? codigo : codigo2,
+         (populacao > populacao2) ? nome_cidade : nome_cidade2);
+
+
   // printf("Área: Carta %d venceu (%d)\n",
   //        (area > area2)            ? 1 : 2,
   //        (area > area2));
