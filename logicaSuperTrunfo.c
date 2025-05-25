@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das Cartas
@@ -18,15 +19,17 @@ int bilhao = 1000000000;
 int main() {
   // Carta 1
   printf("-=-=-=-=CARTA 1=-=-=-=-\n");
+  printf("Digite o Cdigo da carta: ");
+  scanf("%s", codigo);
+
   printf("Digite o estado: ");
   scanf("%s", &estado);
 
-  printf("Digite o Cdigo da carta: ");
-  scanf("%s", codigo);
 
   printf("Digite o nome da cidade: ");
   getchar();                           // Usando isso para evitar que a linha pule para o final do programa
   fgets(nome_cidade, 20, stdin);      // fgets ao inves de scanf, para capturar espacos
+  nome_cidade[strcspn(nome_cidade, "\n")] = '\0';
 
   printf("Digite o total da populacao: ");
   scanf("%lu", &populacao);
@@ -54,15 +57,16 @@ int main() {
 
   // repete
   printf("-=-=-=-=CARTA 2=-=-=-=-\n");
-  printf("Digite o estado: ");
-  scanf("%2s", &estado2);
-
   printf("Digite o Cdigo da carta: ");
   scanf("%s", codigo2);
+
+  printf("Digite o estado: ");
+  scanf("%2s", &estado2);
 
   printf("Digite o nome da cidade: ");
   getchar();
   fgets(nome_cidade2, 20, stdin);
+  nome_cidade2[strcspn(nome_cidade2, "\n")] = '\0';
 
   printf("Digite o total da populacao: ");
   scanf("%lu", &populacao2);
@@ -89,9 +93,9 @@ int main() {
     + pibpc2;
 
   printf("Comparação de Cartas:\n\n"); //Removi o código antigo para se adequar ao pedido.
-  printf("%s (\"%s\") %d:\n", nome_cidade, estado, populacao);
-  printf("%s (\"%s\") %d:\n", nome_cidade2, estado2,populacao2);
-  printf("Resultado: Carta %s venceu (%s)\n",
+  printf("%s (\"%s\") :%d\n", nome_cidade, estado, populacao);
+  printf("%s (\"%s\") :%d\n", nome_cidade2, estado2,populacao2);
+  printf("Resultado: Carta \'%s\' venceu (%s)\n",
          (populacao > populacao2) ? codigo : codigo2,
          (populacao > populacao2) ? nome_cidade : nome_cidade2);
 
