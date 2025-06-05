@@ -27,19 +27,27 @@ void printComparacao(void* atr1, void* atr2, ValueType type)
     int val2 = *((int*)atr2);
     printf("%s (\"%s\") :%d\n", nome_cidade, estado, val1);
     printf("%s (\"%s\") :%d\n", nome_cidade2, estado2, val2);
-    printf("Resultado: Carta '%s' venceu (%s)\n",
-           (val1 > val2) ? codigo : codigo2,
-           (val1 > val2) ? nome_cidade : nome_cidade2);
+    if (val1 == val2) {
+      printf("EMPATE\n");
+    } else {
+      printf("Resultado: Carta '%s' venceu (%s)\n",
+             (val1 > val2) ? codigo : codigo2,
+             (val1 > val2) ? nome_cidade : nome_cidade2);
+    }
   }
   else if (type == TYPE_FLOAT)
   {
     float val1 = *((float*)atr1);
     float val2 = *((float*)atr2);
-    printf("%s (\"%s\") :%.2f\n", nome_cidade, estado, val1);
-    printf("%s (\"%s\") :%.2f\n", nome_cidade2, estado2, val2);
-    printf("Resultado: Carta '%s' venceu (%s)\n",
-           (val1 > val2) ? codigo : codigo2,
-           (val1 > val2) ? nome_cidade : nome_cidade2);
+    if (val1 == val2) {
+      printf("EMPATE\n");
+    } else {
+      printf("%s (\"%s\") :%.2f\n", nome_cidade, estado, val1);
+      printf("%s (\"%s\") :%.2f\n", nome_cidade2, estado2, val2);
+      printf("Resultado: Carta '%s' venceu (%s)\n",
+             (val1 > val2) ? codigo : codigo2,
+             (val1 > val2) ? nome_cidade : nome_cidade2);
+    }
   }
 }
 
@@ -123,49 +131,6 @@ int main() {
 
   system("clear");
   printf("Comparação de Cartas:\n\n"); //Removi o código antigo para se adequar ao pedido.
-<<<<<<< HEAD
-=======
-
-  printf("Escolha um opção de comparação:\n1) População\n2) Área\n3) PIB)\n4) Pontos Turisticos\n5) Densidade Populacional\n6) Pib Per Capita\n\n\nSua escolha: ");
-
-  scanf("%d", &escolha);
-
-  system("clear");
-
-  printf("Cidades: %s --- %s\n",nome_cidade, nome_cidade2);
-
-  switch (escolha) {
-    case 1:
-      printComparacao(&populacao, &populacao2, TYPE_INT);
-      break;
-
-    case 2:
-      printComparacao(&area, &area, TYPE_FLOAT);
-      break;
-
-    case 3:
-      printComparacao(&pib, &pib, TYPE_FLOAT);
-      break;
-
-    case 4:
-      printComparacao(&pontos_turisticos, &pontos_turisticos2, TYPE_INT);
-      break;
-
-    case 5:
-      printComparacao(&densidade, &densidade2, TYPE_FLOAT);
-      break;
-
-    case 6:
-      printComparacao(&pibpc, &pibpc2, TYPE_FLOAT);
-      break;
-  }
-  // printf("%s (\"%s\") :%d\n", nome_cidade, estado, populacao);
-  // printf("%s (\"%s\") :%d\n", nome_cidade2, estado2,populacao2);
-  // printf("Resultado: Carta \'%s\' venceu (%s)\n",
-  //        (populacao > populacao2) ? codigo : codigo2,
-  //        (populacao > populacao2) ? nome_cidade : nome_cidade2);
->>>>>>> edf404badf534b263a335fa4fa5f2309cab65ec6
-
   printf("Escolha um opção de comparação:\n1) População\n2) Área\n3) PIB)\n4) Pontos Turisticos\n5) Densidade Populacional\n6) Pib Per Capita\n\n\nSua escolha: ");
 
   scanf("%d", &escolha);
