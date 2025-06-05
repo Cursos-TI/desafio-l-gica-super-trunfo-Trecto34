@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 // Desafio Super Trunfo - Países
@@ -10,13 +11,40 @@
 char codigo[20], codigo2[20], nome_cidade[20],
 nome_cidade2[20];
 char estado[3], estado2[3];
-int pontos_turisticos, pontos_turisticos2;
+int pontos_turisticos, pontos_turisticos2, escolha;
 signed long int populacao, populacao2;
 float area, area2, pib, pib2, densidade, densidade2, pibpc, pibpc2;
 float invdensidade, invdensidade2, superpoder, superpoder2;
 int bilhao = 1000000000;
 
+typedef enum {TYPE_INT, TYPE_FLOAT} ValueType;
+
+void printComparacao(void* atr1, void* atr2, ValueType type)
+{
+  if (type == TYPE_INT)
+  {
+    int val1 = *((int*)atr1);
+    int val2 = *((int*)atr2);
+    printf("%s (\"%s\") :%d\n", nome_cidade, estado, val1);
+    printf("%s (\"%s\") :%d\n", nome_cidade2, estado2, val2);
+    printf("Resultado: Carta '%s' venceu (%s)\n",
+           (val1 > val2) ? codigo : codigo2,
+           (val1 > val2) ? nome_cidade : nome_cidade2);
+  }
+  else if (type == TYPE_FLOAT)
+  {
+    float val1 = *((float*)atr1);
+    float val2 = *((float*)atr2);
+    printf("%s (\"%s\") :%.2f\n", nome_cidade, estado, val1);
+    printf("%s (\"%s\") :%.2f\n", nome_cidade2, estado2, val2);
+    printf("Resultado: Carta '%s' venceu (%s)\n",
+           (val1 > val2) ? codigo : codigo2,
+           (val1 > val2) ? nome_cidade : nome_cidade2);
+  }
+}
+
 int main() {
+  system("clear");
   // Carta 1
   printf("-=-=-=-=CARTA 1=-=-=-=-\n");
   printf("Digite o Cdigo da carta: ");
@@ -44,6 +72,7 @@ int main() {
   printf("Digite o total de Pontos Turisticos: ");
   scanf("%d", &pontos_turisticos);
   getchar();
+  system("clear");
 
   densidade     = populacao / area;                   // Calcula a Densidade'
   invdensidade  = area / populacao;                   // Calcula o Inverso da Densidade
@@ -92,12 +121,47 @@ int main() {
     + invdensidade2
     + pibpc2;
 
+  system("clear");
   printf("Comparação de Cartas:\n\n"); //Removi o código antigo para se adequar ao pedido.
-  printf("%s (\"%s\") :%d\n", nome_cidade, estado, populacao);
-  printf("%s (\"%s\") :%d\n", nome_cidade2, estado2,populacao2);
-  printf("Resultado: Carta \'%s\' venceu (%s)\n",
-         (populacao > populacao2) ? codigo : codigo2,
-         (populacao > populacao2) ? nome_cidade : nome_cidade2);
+
+  printf("Escolha um opção de comparação:\n1) População\n2) Área\n3) PIB)\n4) Pontos Turisticos\n5) Densidade Populacional\n6) Pib Per Capita\n\n\nSua escolha: ");
+
+  scanf("%d", &escolha);
+
+  system("clear");
+
+  printf("Cidades: %s --- %s\n",nome_cidade, nome_cidade2);
+
+  switch (escolha) {
+    case 1:
+      printComparacao(&populacao, &populacao2, TYPE_INT);
+      break;
+
+    case 2:
+      printComparacao(&area, &area, TYPE_FLOAT);
+      break;
+
+    case 3:
+      printComparacao(&pib, &pib, TYPE_FLOAT);
+      break;
+
+    case 4:
+      printComparacao(&pontos_turisticos, &pontos_turisticos2, TYPE_INT);
+      break;
+
+    case 5:
+      printComparacao(&densidade, &densidade2, TYPE_FLOAT);
+      break;
+
+    case 6:
+      printComparacao(&pibpc, &pibpc2, TYPE_FLOAT);
+      break;
+  }
+  // printf("%s (\"%s\") :%d\n", nome_cidade, estado, populacao);
+  // printf("%s (\"%s\") :%d\n", nome_cidade2, estado2,populacao2);
+  // printf("Resultado: Carta \'%s\' venceu (%s)\n",
+  //        (populacao > populacao2) ? codigo : codigo2,
+  //        (populacao > populacao2) ? nome_cidade : nome_cidade2);
 
 
   // printf("Área: Carta %d venceu (%d)\n",
@@ -122,3 +186,5 @@ int main() {
 
   return 0;
 }
+
+
