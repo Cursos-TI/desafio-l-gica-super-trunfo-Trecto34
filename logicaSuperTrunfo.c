@@ -19,6 +19,59 @@ int bilhao = 1000000000;
 
 typedef enum {TYPE_INT, TYPE_FLOAT} ValueType;
 
+void menu(){
+  int opcao, i, j;
+  int opcoes[6] = {1, 2, 3, 4, 5, 6};
+  char *textos[] = { "População", "Área", "PIB", "Pontos Turisticos", "Densidade", "PIB Per Capita" };
+  int removida = -1;
+  int selecionadas[2];
+
+  for (i=0; i<2; i++){
+    printf("-=-=-=-=MENU (%d)=-=-=-=-\n", i + 1);
+    for (j = 0; j < 6; j++){
+      if (opcoes[j] != removida){
+        printf("%d. %s\n", opcoes[j], textos[j]);
+      }
+    }
+    printf("Escolha Uma: ");
+    scanf("%d", &opcao);
+
+    switch (opcao) {
+      case 1:
+        printf("Escolhido %s\n", textos[0]);
+        break;
+      case 2:
+        printf("Escolhido %s\n", textos[1]);
+        break;
+
+      case 3:
+        printf("Escolhido %s\n", textos[2]);
+        break;
+
+      case 4:
+        printf("Escolhido %s\n", textos[3]);
+        break;
+
+      case 5:
+        printf("Escolhido %s\n", textos[4]);
+        break;
+
+      case 6:
+        printf("Escolhido %s\n", textos[5]);
+        break;
+      default:
+        printf("Opção Invalida\n");
+        i--;
+        continue;
+    }
+    selecionadas[i] = opcao;
+    if (i==0) {
+      removida = opcao;
+    }
+    system("clear");
+  }
+}
+
 void printComparacao(void* atr1, void* atr2, ValueType type)
 {
   if (type == TYPE_INT)
@@ -130,40 +183,42 @@ int main() {
     + pibpc2;
 
   system("clear");
-  printf("Comparação de Cartas:\n\n"); //Removi o código antigo para se adequar ao pedido.
-  printf("Escolha um opção de comparação:\n1) População\n2) Área\n3) PIB)\n4) Pontos Turisticos\n5) Densidade Populacional\n6) Pib Per Capita\n\n\nSua escolha: ");
 
-  scanf("%d", &escolha);
-
-  system("clear");
-
-  printf("Cidades: %s --- %s\n",nome_cidade, nome_cidade2);
-
-  switch (escolha) {
-    case 1:
-      printComparacao(&populacao, &populacao2, TYPE_INT);
-      break;
-
-    case 2:
-      printComparacao(&area, &area, TYPE_FLOAT);
-      break;
-
-    case 3:
-      printComparacao(&pib, &pib, TYPE_FLOAT);
-      break;
-
-    case 4:
-      printComparacao(&pontos_turisticos, &pontos_turisticos2, TYPE_INT);
-      break;
-
-    case 5:
-      printComparacao(&densidade, &densidade2, TYPE_FLOAT);
-      break;
-
-    case 6:
-      printComparacao(&pibpc, &pibpc2, TYPE_FLOAT);
-      break;
-  }
+  menu();
+  // printf("Comparação de Cartas:\n\n"); //Removi o código antigo para se adequar ao pedido.
+  // printf("Escolha um opção de comparação:\n1) População\n2) Área\n3) PIB)\n4) Pontos Turisticos\n5) Densidade Populacional\n6) Pib Per Capita\n\n\nSua escolha: ");
+  //
+  // scanf("%d", &escolha);
+  //
+  // system("clear");
+  //
+  // printf("Cidades: %s --- %s\n",nome_cidade, nome_cidade2);
+  //
+  // switch (escolha) {
+  //   case 1:
+  //     printComparacao(&populacao, &populacao2, TYPE_INT);
+  //     break;
+  //
+  //   case 2:
+  //     printComparacao(&area, &area, TYPE_FLOAT);
+  //     break;
+  //
+  //   case 3:
+  //     printComparacao(&pib, &pib, TYPE_FLOAT);
+  //     break;
+  //
+  //   case 4:
+  //     printComparacao(&pontos_turisticos, &pontos_turisticos2, TYPE_INT);
+  //     break;
+  //
+  //   case 5:
+  //     printComparacao(&densidade, &densidade2, TYPE_FLOAT);
+  //     break;
+  //
+  //   case 6:
+  //     printComparacao(&pibpc, &pibpc2, TYPE_FLOAT);
+  //     break;
+  // }
   return 0;
 }
 
