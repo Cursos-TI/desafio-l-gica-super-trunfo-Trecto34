@@ -16,6 +16,7 @@ signed long int populacao, populacao2;
 float area, area2, pib, pib2, densidade, densidade2, pibpc, pibpc2;
 float invdensidade, invdensidade2, superpoder, superpoder2;
 int bilhao = 1000000000;
+int validadeInt;
 
 typedef enum {TYPE_INT, TYPE_FLOAT} ValueType;
 
@@ -113,6 +114,7 @@ int main() {
 
   printf("Digite o estado: ");
   scanf("%s", &estado);
+
 
 
   printf("Digite o nome da cidade: ");
